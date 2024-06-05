@@ -24,23 +24,22 @@ public class FlightController {
         return new ResponseEntity<>(flightService.getAllFlights(), HttpStatus.OK);
     }
 
-    // TODO: Display a specific flight
+    // Display a specific flight
     @GetMapping(value = "/{id}")
     public ResponseEntity<Flight> getFlightById(@PathVariable long id){
-        Optional<Flight> flight = flightService.
-        return ;
+        Optional<Flight> flight = flightService.getFlightById(id);
+        if (flight.isEmpty()) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        } else{
+            return new ResponseEntity<>(, HttpStatus.OK);
+        }
     }
 
-    // TODO: Add details of a new flight
+    // Add details of a new flight
     @PostMapping
-    public ResponseEntity<Flight> addNewFlight(){
-        return null;
-    }
-
-    // TODO: Extension - Cancel flight
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity cancelFlight(){
-        return null;
+    public ResponseEntity<Flight> addNewFlight(@RequestBody Flight flight){
+        flightService.saveFlight(flight);
+        return new ResponseEntity<>(flight, HttpStatus.CREATED);
     }
 
 }
