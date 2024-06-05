@@ -31,7 +31,7 @@ public class FlightController {
         if (flight.isEmpty()) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         } else{
-            return new ResponseEntity<>(, HttpStatus.OK);
+            return new ResponseEntity<>(flight.get(), HttpStatus.OK);
         }
     }
 
