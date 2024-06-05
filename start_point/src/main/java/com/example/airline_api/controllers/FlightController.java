@@ -27,7 +27,7 @@ public class FlightController {
     // Display a specific flight
     @GetMapping(value = "/{id}")
     public ResponseEntity<Flight> getFlightById(@PathVariable long id){
-        Optional<Flight> flight = flightService.getFlightById(id);
+        Optional<Flight> flight = flightService.findSingleFlight(id);
         if (flight.isEmpty()) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         } else{
