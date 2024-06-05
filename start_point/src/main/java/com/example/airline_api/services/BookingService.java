@@ -13,14 +13,19 @@ import java.util.List;
 @Service
 public class BookingService {
 
-    @Autowired
-    FlightRepository flightRepository;
 
     @Autowired
-    PassengerRepository passengerRepository;
+    BookingRepository bookingRepository;
+
+    @Autowired
+    FlightService flightService;
+
+    @Autowired
+    BookingService bookingService;
+
+    public List<Booking> findAllBookings(){
+        return bookingRepository.findAll();
+    }
 
 
-//    public List<Booking> findAllBookings(){
-//        return BookingRepository.findAll();
-//    }
 }
