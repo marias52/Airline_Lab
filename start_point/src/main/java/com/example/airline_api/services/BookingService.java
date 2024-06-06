@@ -6,6 +6,8 @@ import com.example.airline_api.models.Booking;
 import com.example.airline_api.models.Flight;
 import com.example.airline_api.models.Passenger;
 import com.example.airline_api.repositories.BookingRepository;
+import com.example.airline_api.repositories.FlightRepository;
+import com.example.airline_api.repositories.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -17,6 +19,12 @@ public class BookingService {
 
     @Autowired
     BookingRepository bookingRepository;
+
+    @Autowired
+    FlightRepository flightRepository;
+
+    @Autowired
+    PassengerRepository passengerRepository;
 
     @Autowired
     FlightService flightService;
@@ -34,12 +42,13 @@ public class BookingService {
 
     }
 
+
     public void saveBooking(Booking booking) {
         bookingRepository.save(booking);
     }
 
 
-    public Booking saveCocoaOrder(BookingDTO bookingDTO) {
+    public Booking addNewBooking(BookingDTO bookingDTO) {
 
         Flight flight = flightService.findSingleFlight(bookingDTO.getFlightId()).get();
         Passenger passenger = passengerService.findSinglePassenger(bookingDTO.getPassengerId()).get();

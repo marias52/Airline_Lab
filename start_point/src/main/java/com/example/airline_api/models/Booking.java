@@ -13,18 +13,18 @@ public class Booking {
 
     @ManyToOne
     @JoinColumn (name = "flight_id")
-    @JsonIgnoreProperties({"bookings"})
+    @JsonIgnoreProperties({"booking"})
     private Flight flight;
 
     @ManyToOne
     @JoinColumn (name = "passenger_id")
-    @JsonIgnoreProperties({"flights"})
+    @JsonIgnoreProperties({"booking"})
     private Passenger passenger;
 
-    @Column (name = "seatNumber")
+    @Column (name = "seat_Number")
     private int seatNumber;
 
-    @Column (name = "mealPreference")
+    @Column (name = "meal_preference")
     private String mealPreference;
 
     public Booking(Flight flight, Passenger passenger, int seatNumber){

@@ -20,10 +20,10 @@ public class Flight {
     @Column (name = "capacity")
     private int capacity;
 
-    @Column (name = "departureDate")
+    @Column (name = "departure_Date")
     private String departureDate;
 
-    @Column (name = "departureTime")
+    @Column (name = "departure_Time")
     private String departureTime;
 
     @OneToMany(mappedBy = "flight" )

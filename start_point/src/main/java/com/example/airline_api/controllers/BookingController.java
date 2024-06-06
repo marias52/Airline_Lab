@@ -1,5 +1,6 @@
 package com.example.airline_api.controllers;
 
+import com.example.airline_api.DTO.BookingDTO;
 import com.example.airline_api.models.Booking;
 import com.example.airline_api.models.Flight;
 import com.example.airline_api.services.BookingService;
@@ -18,6 +19,9 @@ public class BookingController {
     @Autowired
     BookingService bookingService;
 
+    @Autowired
+    BookingDTO bookingDTO;
+
     // Display all bookings
     @GetMapping
     public ResponseEntity<List<Booking>> getAllBookings(){
@@ -25,14 +29,10 @@ public class BookingController {
     }
 
     // Add details of a new booking
-    @PostMapping(value = "/{id}")
-    public ResponseEntity<Booking> addNewBooking(@PathVariable long id){
-        Optional<Booking> booking = bookingService.findSingleBooking(id);
-        if (booking.isEmpty()) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        } else{
-            return new ResponseEntity<>(booking.get(), HttpStatus.OK);
+    @PostMapping
+    public ResponseEntity<Booking> addNewBooking(@RequestBody BookingDTO bookingDTO){
+        Booking booking = bookingService.addNewBooking(bookingDTO);
+            return new ResponseEntity<>(booking, HttpStatus.OK);
         }
     }
 
-}

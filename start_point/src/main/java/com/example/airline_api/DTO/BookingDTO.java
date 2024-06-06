@@ -37,4 +37,11 @@ public class BookingDTO {
         this.seatNumber = seatNumber;
     }
 
+    public String getMealPreference() {
+        return mealPreference;
+    }
+
+    public void setMealPreference(String mealPreference) {
+        this.mealPreference = mealPreference;
+    }
 }
